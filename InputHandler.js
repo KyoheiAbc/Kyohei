@@ -57,6 +57,10 @@ export class InputHandler {
         button.addEventListener("click", () => {
             this.inputQueue.push(11);
         });
+        button.addEventListener("touchstart", (e) => {
+            e.preventDefault();
+            this.inputQueue.push(11);
+        });
     }
 
     handleMovement(delta) {
