@@ -10,6 +10,7 @@ export class PuyoManager {
 
     addPuyo(x, y, color) {
         this.puyos.push(new Puyo(x, y, color));
+        console.log(`New puyo created at (${x},${y}) with color ${color}`);
         return this.puyos[this.puyos.length - 1];
     }
 
@@ -28,6 +29,7 @@ export class PuyoManager {
         }
 
         if (this.currentPuyo.frozenCount > 20) {
+            console.log("Puyo frozen, creating new puyo");
             this.currentPuyo = this.addPuyo(4 * 16 + 8, 1 * 16 + 8, Utils.randomColor());
         }
 

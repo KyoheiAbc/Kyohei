@@ -35,6 +35,7 @@ export class GameManager {
     }
 
     start() {
+        console.log("Game started");
         setInterval(() => this.update(), 1000 / 20);
     }
 
@@ -44,6 +45,7 @@ export class GameManager {
 
             if (direction === 11) {
                 this.puyoManager.currentPuyo.hardDrop(this.puyoManager.puyos);
+                console.log("Hard drop executed");
             }
 
             const moves = {
@@ -56,6 +58,7 @@ export class GameManager {
             const move = moves[direction];
             if (move) {
                 this.puyoManager.currentPuyo.move(move, this.puyoManager.puyos);
+                console.log(`Moved puyo: ${direction}`);
             }
         }
 
