@@ -45,7 +45,9 @@ export class Renderer {
         this.ctx.clearRect(0, 0, this.ctx.canvas.width, this.ctx.canvas.height);
 
         // 現在のぷよを描画
-        this.renderPuyo(puyo, true);
+        if (puyo != null) {
+            this.renderPuyo(puyo, true);
+        }
 
         // 他のすべてのぷよを描画
         for (let i = 0; i < puyos.length; i++) {

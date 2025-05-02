@@ -14,7 +14,9 @@ export class PuyoManager {
     }
 
     update() {
-        this.currentPuyo.fall(this.puyos);
+        if (this.currentPuyo !== null) {
+            this.currentPuyo.fall(this.puyos);
+        }
 
 
         for (let i = 0; i < this.puyos.length; i++) {
@@ -29,7 +31,20 @@ export class PuyoManager {
 
 
     }
-
+    allPuyosFrozen() {
+        for (const puyo of this.puyos) {
+            if (puyo.color === -1) {
+                continue;
+            }
+            if (puyo === this.currentPuyo) {
+                continue;
+            }
+            if (puyo.frozenCount < 20) {
+                return false;
+            }
+        }
+        return true;
+    }
 
     removePuyo(puyo) {
         const index = this.puyos.indexOf(puyo);

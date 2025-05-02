@@ -14,6 +14,6 @@ export class Utils {
         return null; // No collision
     }
     static randomColor() {
-        return Math.floor(Math.random() * 4);
+        return Math.floor(Math.random() * 3);
     }
 }

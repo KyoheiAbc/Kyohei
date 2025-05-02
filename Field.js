@@ -45,7 +45,7 @@ export class Field {
                     const connected = [];
                     dfs(x, y, this.grid[y][x].color, connected);
 
-                    if (connected.length >= 4) {
+                    if (connected.length >= 3) {
                         for (const { x: cx, y: cy } of connected) {
                             shouldRemove.push(this.grid[cy][cx]);
                             this.grid[cy][cx] = null;

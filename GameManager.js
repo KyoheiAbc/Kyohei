@@ -23,13 +23,13 @@ export class GameManager {
             }
         }
 
-        this.puyoManager.addPuyo(1 * 16 + 8, 6 * 16 + 8, -1);
-        this.puyoManager.addPuyo(3 * 16 + 8, 6 * 16 + 8, -1);
-        this.puyoManager.addPuyo(3 * 16 + 8, 8 * 16 + 8, -1);
+        // this.puyoManager.addPuyo(1 * 16 + 8, 6 * 16 + 8, -1);
+        // this.puyoManager.addPuyo(3 * 16 + 8, 6 * 16 + 8, -1);
+        // this.puyoManager.addPuyo(3 * 16 + 8, 8 * 16 + 8, -1);
 
-        this.puyoManager.addPuyo(4 * 16 + 8, 6 * 16 + 8, Utils.randomColor());
-        this.puyoManager.addPuyo(6 * 16 + 8, 6 * 16 + 8, Utils.randomColor());
-        this.puyoManager.addPuyo(6 * 16 + 8, 8 * 16 + 8, Utils.randomColor());
+        // this.puyoManager.addPuyo(4 * 16 + 8, 6 * 16 + 8, Utils.randomColor());
+        // this.puyoManager.addPuyo(6 * 16 + 8, 6 * 16 + 8, Utils.randomColor());
+        // this.puyoManager.addPuyo(6 * 16 + 8, 8 * 16 + 8, Utils.randomColor());
 
 
 
@@ -65,20 +65,25 @@ export class GameManager {
 
         this.puyoManager.update();
 
-        if (this.puyoManager.currentPuyo.frozenCount > 20) {
-            this.puyoManager.currentPuyo = this.puyoManager.addPuyo(4 * 16 + 8, 1 * 16 + 8, Utils.randomColor());
+        if (this.puyoManager.currentPuyo != null && this.puyoManager.currentPuyo.frozenCount > 20) {
+            this.puyoManager.currentPuyo = null;
 
-            const field = new Field(this.puyoManager.puyos);
-            const removedPuyos = field.removeConnectedPuyos();
-            if (removedPuyos.length > 0) {
-                console.log(`Removed ${removedPuyos.length} puyos`);
-                for (const puyo of removedPuyos) {
-                    this.puyoManager.removePuyo(puyo);
+        }
+
+        if (this.puyoManager.currentPuyo == null) {
+            if (this.puyoManager.allPuyosFrozen()) {
+                const field = new Field(this.puyoManager.puyos);
+                const removedPuyos = field.removeConnectedPuyos();
+                if (removedPuyos.length > 0) {
+                    console.log(`Removed ${removedPuyos.length} puyos`);
+                    for (const puyo of removedPuyos) {
+                        this.puyoManager.removePuyo(puyo);
+                    }
+                } else {
+                    console.log("No puyos removed");
+                    this.puyoManager.currentPuyo = this.puyoManager.addPuyo(4 * 16 + 8, 1 * 16 + 8, Utils.randomColor());
                 }
-            } else {
-                console.log("No puyos removed");
             }
-
         }
 
 
