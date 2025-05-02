@@ -7,7 +7,7 @@ export class Utils {
             const dy = puyo.y - otherPuyo.y;
             const length = dx * dx + dy * dy;
             if (length < 16 * 16) {
-                console.log(`Collision detected between puyo at (${puyo.x}, ${puyo.y}) and (${otherPuyo.x}, ${otherPuyo.y})`);
+                // console.log(`Collision detected between puyo at (${puyo.x}, ${puyo.y}) and (${otherPuyo.x}, ${otherPuyo.y})`);
                 return otherPuyo; // Collision detected
             }
         }

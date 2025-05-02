@@ -5,7 +5,6 @@ export class PuyoManager {
         this.puyos = [];
 
         this.currentPuyo = this.addPuyo(4 * 16 + 8, 1 * 16 + 8, Utils.randomColor());
-
     }
 
     addPuyo(x, y, color) {
@@ -28,11 +27,16 @@ export class PuyoManager {
             this.puyos[i].update(this.puyos);
         }
 
-        if (this.currentPuyo.frozenCount > 20) {
-            console.log("Puyo frozen, creating new puyo");
-            this.currentPuyo = this.addPuyo(4 * 16 + 8, 1 * 16 + 8, Utils.randomColor());
-        }
 
+    }
+
+
+    removePuyo(puyo) {
+        const index = this.puyos.indexOf(puyo);
+        if (index > -1) {
+            this.puyos.splice(index, 1);
+            console.log(`Puyo removed at (${puyo.x},${puyo.y})`);
+        }
     }
 
 

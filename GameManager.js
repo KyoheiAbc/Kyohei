@@ -2,6 +2,7 @@ import { InputHandler } from './InputHandler.js';
 import { Renderer } from './Renderer.js';
 import { PuyoManager } from './PuyoManager.js';
 import { Utils } from './Utils.js';
+import { Field } from './Field.js';
 
 export class GameManager {
     constructor(canvas) {
@@ -64,7 +65,21 @@ export class GameManager {
 
         this.puyoManager.update();
 
+        if (this.puyoManager.currentPuyo.frozenCount > 20) {
+            this.puyoManager.currentPuyo = this.puyoManager.addPuyo(4 * 16 + 8, 1 * 16 + 8, Utils.randomColor());
 
+            const field = new Field(this.puyoManager.puyos);
+            const removedPuyos = field.removeConnectedPuyos();
+            if (removedPuyos.length > 0) {
+                console.log(`Removed ${removedPuyos.length} puyos`);
+                for (const puyo of removedPuyos) {
+                    this.puyoManager.removePuyo(puyo);
+                }
+            } else {
+                console.log("No puyos removed");
+            }
+
+        }
 
 
 
