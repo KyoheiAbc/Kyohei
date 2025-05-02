@@ -14,7 +14,7 @@ export class PuyoManager {
     }
 
     update() {
-        this.currentPuyo.update(this.puyos);
+        this.currentPuyo.fall(this.puyos);
 
 
         for (let i = 0; i < this.puyos.length; i++) {

@@ -50,10 +50,10 @@ export class GameManager {
             }
 
             const moves = {
-                2: { x: 0, y: 1 },
-                8: { x: 0, y: -1 },
-                4: { x: -1, y: 0 },
-                6: { x: 1, y: 0 }
+                2: { x: 0, y: 16 },
+                8: { x: 0, y: -16 },
+                4: { x: -16, y: 0 },
+                6: { x: 16, y: 0 }
             };
 
             const move = moves[direction];

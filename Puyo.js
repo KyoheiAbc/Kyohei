@@ -13,8 +13,8 @@ export class Puyo {
 
         const startPosition = { x: this.x, y: this.y };
 
-        this.x += direction.x * 16;
-        this.y += direction.y * 16;
+        this.x += direction.x;
+        this.y += direction.y;
 
         let collision = Utils.isColliding(this, puyos);
         if (collision == null) {
@@ -42,15 +42,24 @@ export class Puyo {
 
     hardDrop(puyos) {
         for (let i = 0; i < 16; i++) {
-            this.move({ x: 0, y: 1 }, puyos);
+            this.move({ x: 0, y: 16 }, puyos);
         }
         this.frozenCount = 20;
     }
+    fall(puyos) {
+        const startY = this.y;
+        this.move({ x: 0, y: 1 }, puyos);
+        if (this.y === startY) {
+            this.frozenCount++;
+        } else {
+            this.frozenCount = 0;
+        }
+    }
 
     update(puyos) {
-        this.y += 1;
-        if (Utils.isColliding(this, puyos)) {
-            this.y -= 1;
+        const startY = this.y;
+        this.move({ x: 0, y: 16 }, puyos);
+        if (this.y === startY) {
             this.frozenCount++;
         } else {
             this.frozenCount = 0;
