@@ -1,10 +1,16 @@
 import { Puyo } from "./Puyo.js";
+import { PuyoPair } from "./Puyo.js";
 import { Utils } from "./Utils.js";
+
 export class PuyoManager {
     constructor() {
         this.puyos = [];
+        this.PuyoPair = new PuyoPair(
+            this.addPuyo(4 * 16 + 8, 2 * 16 + 8, Utils.randomColor()),
+            this.addPuyo(4 * 16 + 8, 1 * 16 + 8, Utils.randomColor())
+        );
 
-        this.currentPuyo = this.addPuyo(4 * 16 + 8, 1 * 16 + 8, Utils.randomColor());
+        // this.currentPuyo = this.addPuyo(4 * 16 + 8, 1 * 16 + 8, Utils.randomColor());
     }
 
     addPuyo(x, y, color) {
@@ -14,20 +20,20 @@ export class PuyoManager {
     }
 
     update() {
-        if (this.currentPuyo !== null) {
-            this.currentPuyo.fall(this.puyos);
-        }
+        // if (this.currentPuyo !== null) {
+        //     this.currentPuyo.fall(this.puyos);
+        // }
 
 
-        for (let i = 0; i < this.puyos.length; i++) {
-            if (this.puyos[i].color === -1) {
-                continue;
-            }
-            if (this.puyos[i] === this.currentPuyo) {
-                continue;
-            }
-            this.puyos[i].update(this.puyos);
-        }
+        // for (let i = 0; i < this.puyos.length; i++) {
+        //     if (this.puyos[i].color === -1) {
+        //         continue;
+        //     }
+        //     if (this.puyos[i] === this.currentPuyo) {
+        //         continue;
+        //     }
+        //     this.puyos[i].update(this.puyos);
+        // }
 
 
     }

@@ -23,13 +23,15 @@ export class GameManager {
             }
         }
 
-        // this.puyoManager.addPuyo(1 * 16 + 8, 6 * 16 + 8, -1);
-        // this.puyoManager.addPuyo(3 * 16 + 8, 6 * 16 + 8, -1);
-        // this.puyoManager.addPuyo(3 * 16 + 8, 8 * 16 + 8, -1);
+        this.puyoManager.addPuyo(1 * 16 + 8, 6 * 16 + 8, Utils.randomColor());
+        this.puyoManager.addPuyo(3 * 16 + 8, 6 * 16 + 8, Utils.randomColor());
+        this.puyoManager.addPuyo(3 * 16 + 8, 8 * 16 + 8, -Utils.randomColor());
 
-        // this.puyoManager.addPuyo(4 * 16 + 8, 6 * 16 + 8, Utils.randomColor());
-        // this.puyoManager.addPuyo(6 * 16 + 8, 6 * 16 + 8, Utils.randomColor());
-        // this.puyoManager.addPuyo(6 * 16 + 8, 8 * 16 + 8, Utils.randomColor());
+        this.puyoManager.addPuyo(4 * 16 + 8, 6 * 16 + 8, Utils.randomColor());
+        this.puyoManager.addPuyo(6 * 16 + 8, 6 * 16 + 8, Utils.randomColor());
+        this.puyoManager.addPuyo(6 * 16 + 8, 8 * 16 + 8, Utils.randomColor());
+
+        this.puyoManager.addPuyo(4 * 16 + 8, 8 * 16 + 8, Utils.randomColor());
 
 
 
@@ -44,9 +46,13 @@ export class GameManager {
         const direction = this.inputHandler.getNextDirection();
         if (direction) {
 
-            if (direction === 11) {
-                this.puyoManager.currentPuyo.hardDrop(this.puyoManager.puyos);
-                console.log("Hard drop executed");
+            // if (direction === 11) {
+            //     this.puyoManager.currentPuyo.hardDrop(this.puyoManager.puyos);
+            //     console.log("Hard drop executed");
+            // }
+            if (direction === 5) {
+                this.puyoManager.PuyoPair.rotate(this.puyoManager.puyos);
+                console.log("Puyo rotated");
             }
 
             const moves = {
@@ -58,33 +64,33 @@ export class GameManager {
 
             const move = moves[direction];
             if (move) {
-                this.puyoManager.currentPuyo.move(move, this.puyoManager.puyos);
+                this.puyoManager.PuyoPair.move(move, this.puyoManager.puyos);
                 console.log(`Moved puyo: ${direction}`);
             }
         }
 
         this.puyoManager.update();
 
-        if (this.puyoManager.currentPuyo != null && this.puyoManager.currentPuyo.frozenCount > 20) {
-            this.puyoManager.currentPuyo = null;
+        // if (this.puyoManager.currentPuyo != null && this.puyoManager.currentPuyo.frozenCount > 20) {
+        //     this.puyoManager.currentPuyo = null;
 
-        }
+        // }
 
-        if (this.puyoManager.currentPuyo == null) {
-            if (this.puyoManager.allPuyosFrozen()) {
-                const field = new Field(this.puyoManager.puyos);
-                const removedPuyos = field.removeConnectedPuyos();
-                if (removedPuyos.length > 0) {
-                    console.log(`Removed ${removedPuyos.length} puyos`);
-                    for (const puyo of removedPuyos) {
-                        this.puyoManager.removePuyo(puyo);
-                    }
-                } else {
-                    console.log("No puyos removed");
-                    this.puyoManager.currentPuyo = this.puyoManager.addPuyo(4 * 16 + 8, 1 * 16 + 8, Utils.randomColor());
-                }
-            }
-        }
+        // if (this.puyoManager.currentPuyo == null) {
+        //     if (this.puyoManager.allPuyosFrozen()) {
+        //         const field = new Field(this.puyoManager.puyos);
+        //         const removedPuyos = field.removeConnectedPuyos();
+        //         if (removedPuyos.length > 0) {
+        //             console.log(`Removed ${removedPuyos.length} puyos`);
+        //             for (const puyo of removedPuyos) {
+        //                 this.puyoManager.removePuyo(puyo);
+        //             }
+        //         } else {
+        //             console.log("No puyos removed");
+        //             this.puyoManager.currentPuyo = this.puyoManager.addPuyo(4 * 16 + 8, 1 * 16 + 8, Utils.randomColor());
+        //         }
+        //     }
+        // }
 
 
 
