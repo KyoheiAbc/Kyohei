@@ -9,13 +9,33 @@ export class PuyoPair {
 
     move(direction, puyos) {
 
+        const startPosition = { x: this.parentPuyo.x, y: this.parentPuyo.y };
+
         if (direction.x === this.relativePosition.x && direction.y === this.relativePosition.y) {
             this.childPuyo.move(direction, puyos);
             this.synchronize(this.childPuyo);
-        } else {
-            this.parentPuyo.move(direction, puyos);
-            this.synchronize(this.parentPuyo);
+            return;
         }
+        this.parentPuyo.move(direction, puyos);
+        this.synchronize(this.parentPuyo);
+        if (Utils.isColliding(this.childPuyo, puyos) == null) {
+            return;
+        }
+
+        this.parentPuyo.x = startPosition.x;
+        this.parentPuyo.y = startPosition.y;
+        this.synchronize(this.parentPuyo);
+
+        this.childPuyo.move(direction, puyos);
+        this.synchronize(this.childPuyo);
+        if (Utils.isColliding(this.parentPuyo, puyos) == null) {
+            return;
+        }
+
+        this.parentPuyo.x = startPosition.x;
+        this.parentPuyo.y = startPosition.y;
+        this.synchronize(this.parentPuyo);
+
     }
 
     rotate(puyos) {
@@ -110,6 +130,11 @@ export class Puyo {
         }
 
         const diffY = this.y - collision.y;
+        if (Math.abs(diffY) < 8) {
+            this.x = startPosition.x;
+            this.y = startPosition.y;
+            return;
+        }
 
         this.y = collision.y + (diffY > 0 ? 16 : -16);
 

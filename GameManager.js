@@ -23,12 +23,12 @@ export class GameManager {
             }
         }
 
-        this.puyoManager.addPuyo(1 * 16 + 8, 6 * 16 + 8, Utils.randomColor());
+        this.puyoManager.addPuyo(1 * 16 + 8, 6.5 * 16 + 8, Utils.randomColor());
         this.puyoManager.addPuyo(3 * 16 + 8, 6 * 16 + 8, Utils.randomColor());
-        this.puyoManager.addPuyo(3 * 16 + 8, 8 * 16 + 8, -Utils.randomColor());
+        this.puyoManager.addPuyo(3 * 16 + 8, 8 * 16 + 8, Utils.randomColor());
 
         this.puyoManager.addPuyo(4 * 16 + 8, 6 * 16 + 8, Utils.randomColor());
-        this.puyoManager.addPuyo(6 * 16 + 8, 6 * 16 + 8, Utils.randomColor());
+        this.puyoManager.addPuyo(6 * 16 + 8, 6.5 * 16 + 8, Utils.randomColor());
         this.puyoManager.addPuyo(6 * 16 + 8, 8 * 16 + 8, Utils.randomColor());
 
         this.puyoManager.addPuyo(4 * 16 + 8, 8 * 16 + 8, Utils.randomColor());

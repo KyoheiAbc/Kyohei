@@ -10,7 +10,7 @@ export class InputHandler {
 
     setupEventListeners() {
         addEventListener("touchstart", (e) => {
-            thris.moved = false;
+            this.moved = false;
             e.preventDefault();
             this.touchPosition = {
                 x: e.touches[0].clientX,
