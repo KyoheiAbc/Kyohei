@@ -3,14 +3,12 @@ export class InputHandler {
         this.touchPosition = null;
         this.inputQueue = [];
         this.movementThreshold = 32;
-        this.moved = false;
 
         this.setupEventListeners();
     }
 
     setupEventListeners() {
         addEventListener("touchstart", (e) => {
-            this.moved = false;
             e.preventDefault();
             this.touchPosition = {
                 x: e.touches[0].clientX,
@@ -21,10 +19,6 @@ export class InputHandler {
         addEventListener("touchend", (e) => {
             e.preventDefault();
             this.touchPosition = null;
-            if (!this.moved) {
-                this.inputQueue.push(5);
-            }
-
         });
 
         addEventListener("touchmove", (e) => {
@@ -39,8 +33,6 @@ export class InputHandler {
         }, { passive: false });
 
         addEventListener("mousedown", (e) => {
-            this.moved = false;
-
             this.touchPosition = {
                 x: e.clientX,
                 y: e.clientY
@@ -49,10 +41,6 @@ export class InputHandler {
 
         addEventListener("mouseup", () => {
             this.touchPosition = null;
-            if (!this.moved) {
-                this.inputQueue.push(5);
-            }
-
         });
 
         addEventListener("mousemove", (e) => {
@@ -65,14 +53,6 @@ export class InputHandler {
             }
         });
 
-        const button = document.getElementById("button");
-        button.addEventListener("click", () => {
-            this.inputQueue.push(11);
-        });
-        button.addEventListener("touchstart", (e) => {
-            e.preventDefault();
-            this.inputQueue.push(11);
-        });
     }
 
     handleMovement(delta) {
@@ -100,10 +80,11 @@ export class InputHandler {
 
             }
         }
-
-        if (this.inputQueue.length > 5) {
+        if (this.inputQueue.length > 10) {
             this.inputQueue.pop();
         }
+
+
     }
 
     getNextDirection() {
