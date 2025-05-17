@@ -1,19 +1,19 @@
 body {
-    width: 100%;
+    background-color: hsl(0, 0%, 10%);
     height: 100%;
     margin: 0;
-    background-color: hsl(0, 0%, 10%);
+    width: 100%;
 }
 
 #canvas {
-    width: 200px;
-    height: 400px;
     background-color: hsl(0, 0%, 20%);
+    bottom: 0;
+    height: 400px;
+    image-rendering: pixelated;
+    left: 0;
     margin: auto;
     position: absolute;
-    top: 0;
-    bottom: 0;
-    left: 0;
     right: 0;
-    image-rendering: pixelated;
+    top: 0;
+    width: 200px;
 }
